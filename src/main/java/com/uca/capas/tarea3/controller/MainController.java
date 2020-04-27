@@ -25,9 +25,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		List<String> lista = new ArrayList<>();
 		
-		DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
-		Date convert = fecha.parse(date);
-		Date auxDate = fecha.parse("2003-01-01");
+		
 		
 		
 		if(names.length() < 1 || names.length() > 25) {
@@ -36,8 +34,16 @@ public class MainController {
 		if(lastnames.length() < 1 || lastnames.length() > 25) {
 			lista.add("Apellidos: " + lastnames);
 		}
-		if(convert.before(auxDate)) {
+		
+		if(date.equals("")) {
 			lista.add("Fecha de nacimiento: " + date);
+		}else {
+			DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+			Date convert = fecha.parse(date);
+			Date auxDate = fecha.parse("2003-01-01");
+			if(convert.before(auxDate)) {
+				lista.add("Fecha de nacimiento: " + date);
+			}
 		}
 		
 		if(place.length() < 1 || place.length() > 25) {
